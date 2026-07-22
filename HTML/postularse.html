@@ -1,0 +1,53 @@
+<!-- HTML/postularse.html -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>postularse - Marvi</title>
+
+    <link rel="stylesheet" href="../CSS/index.css" />
+  </head>
+  <body>
+    <header>
+        <img id="logo" src="../imagenes/logo.png">
+
+      <nav>
+        <a href="../HTML/index.html">Inicio</a>
+        <a href="../HTML/empleos.html">Empleos</a>
+        <a href="../HTML/beneficios.html">Beneficios</a>
+      </nav>
+    </header>
+
+    <section class="formulario">
+      <h2>Enviar Solicitud</h2>
+
+      <form>
+        <input type="text" placeholder="Nombre completo" required />
+
+        <input type="email" placeholder="Correo electrónico" required />
+
+        <input type="tel" placeholder="Teléfono" required />
+
+        <select required>
+          <option value="">Seleccioná un puesto</option>
+          <option>Cajero/a</option>
+          <option>Repositor/a</option>
+          <option>Seguridad</option>
+          <option>Limpieza</option>
+          <option>Carnicero/a</option>
+          <option>Panadero/a</option>
+          <option>Fiambrero/a</option>
+          <option>Verdulero/a</option>
+        </select>
+
+        <textarea placeholder="Contanos sobre vos..." rows="5"></textarea>
+        <div>
+          <h4>Sube tu CV</h4>
+        </div>
+        <input type="file" placeholder="Curriculum vitae" />
+        <button type="submit">Enviar Solicitud</button>
+      </form>
+    </section>
+  </body>
+</html>
