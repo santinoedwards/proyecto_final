@@ -1,0 +1,539 @@
+/* CSS/index.css */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* ================= HEADER ================= */
+
+header{
+
+    width: 100%;
+
+    background: #ff7b00;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 10%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+}
+
+#logo{
+   height: 15%;
+    width: 15%;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav a{
+
+    color: white;
+
+    text-decoration: none;
+
+    margin-left: 25px;
+
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+nav a:hover{
+
+    color: #ffe600;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+    height: 90vh;
+
+    background:
+   
+    url('../imagenes/background.png') no-repeat;
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 10%;
+
+    color: white;
+}
+
+.hero-text{
+
+    max-width: 600px;
+}
+
+.hero h2{
+
+    font-size: 55px;
+
+    margin-bottom: 20px;
+}
+
+.hero p{
+
+    font-size: 18px;
+
+    margin-bottom: 30px;
+
+    line-height: 1.6;
+}
+
+.btn{
+
+    background: #ff7b00;
+
+    color: white;
+
+    padding: 14px 30px;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.btn:hover{
+
+    background: #ff9500;
+}
+
+/* ================= EMPLEOS ================= */
+
+.empleos{
+
+    padding: 80px 10%;
+
+    text-align: center;
+}
+
+.empleos h2{
+
+    font-size: 60px;
+
+    margin-bottom: 50px;
+
+    color: #ff7b00;
+}
+
+.cards{
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+
+    gap: 30px;
+}
+
+/* ================= CARDS ================= */
+
+.card{
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.08);
+
+    transition: 0.4s;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    height: 230px;
+}
+
+/* HOVER */
+
+.card:hover{
+
+    transform: translateY(-10px);
+}
+
+/* ================= TITULOS DE LAS CARDS ================= */
+
+.card h3{
+
+    color: #ff7b00;
+
+    font-size: 38px;
+
+    margin-bottom: 20px;
+
+    min-height: 90px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+/* TEXTO PRINCIPAL */
+
+.card p{
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+/* ================= INFO OCULTA ================= */
+
+.info-extra{
+
+    opacity: 0;
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    transition: 0.4s ease;
+
+    margin-top: 0;
+
+    text-align: left;
+}
+
+/* ================= CARD ABIERTA ================= */
+
+.card.active{
+
+    height: auto;
+
+    transform: scale(1.03);
+}
+
+.card.active .info-extra{
+
+    opacity: 1;
+
+    max-height: 500px;
+
+    margin-top: 25px;
+}
+
+/* ================= BENEFICIOS ================= */
+
+.beneficios{
+
+    padding: 80px 10%;
+
+    text-align: center;
+
+    background: white;
+}
+
+.beneficios h2{
+
+    font-size: 50px;
+
+    margin-bottom: 50px;
+
+    color: #ff7b00;
+}
+
+.beneficios-container{
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+
+    gap: 25px;
+}
+
+.beneficio{
+
+    background: #f5f5f5;
+
+    padding: 40px 20px;
+
+    border-radius: 15px;
+
+    transition: 0.3s;
+}
+
+.beneficio:hover{
+
+    transform: translateY(-8px);
+}
+
+.beneficio span{
+
+    font-size: 50px;
+}
+
+.beneficio h3{
+
+    margin-top: 15px;
+
+    font-size: 22px;
+}
+
+/* ================= FORMULARIO ================= */
+
+.formulario{
+
+    padding: 80px 10%;
+
+    text-align: center;
+}
+
+.formulario h2{
+
+    font-size: 50px;
+
+    margin-bottom: 40px;
+
+    color: #ff7b00;
+}
+
+form{
+
+    max-width: 700px;
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+input,
+select,
+textarea{
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ccc;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border: 1px solid #ff7b00;
+}
+
+button{
+
+    background: #ff7b00;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover{
+
+    background: #ff9500;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+
+    background: #111;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+
+    margin-top: 50px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 768px){
+
+    header{
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    nav{
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+        
+    }
+
+    .hero{
+
+        justify-content: center;
+
+        text-align: center;
+    }
+
+    .hero h2{
+
+        font-size: 40px;
+    }
+
+    .empleos h2{
+
+        font-size: 42px;
+    }
+
+    .card h3{
+
+        font-size: 30px;
+    }
+
+    .card{
+
+        height: auto;
+    }
+
+}
+
+.about-us{
+
+    padding: 80px 10%;
+    background: white;
+}
+
+.about-us-content{
+
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-us h2{
+
+    font-size: 36px;
+    margin-bottom: 25px;
+    color: #ff7b00;
+}
+
+.about-us a{
+
+    color: #ff7b00;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.about-us a:hover{
+
+    text-decoration: underline;
+}
+
+.social-icon-link{
+
+    display: inline-flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 15px 12px 0;
+
+    text-decoration: none;
+}
+
+.social-icon-link img{
+
+    width: 56px;
+
+    height: 56px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+}
+
+.about-circles{
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-items: center;
+    margin-top: 45px;
+}
+
+.about-circle{
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #ff7b00;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.about-us p{
+
+    font-size: 18px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 18px;
+}

@@ -1,0 +1,92 @@
+<!-- HTML/postularse.html -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>postularse - Marvi</title>
+
+    <link rel="stylesheet" href="../CSS/index.css" />
+  </head>
+  <body>
+    <header>
+        <img id="logo" src="../imagenes/logo.png">
+
+      <nav>
+        <a href="../HTML/index.html">Inicio</a>
+        <a href="../HTML/empleos.html">Empleos</a>
+        <a href="../HTML/beneficios.html">Beneficios</a>
+      </nav>
+    </header>
+
+    <section class="formulario">
+      <h2>Enviar Solicitud</h2>
+
+      <form method="POST" action="../backend/index.php?action=agregar_postulacion" enctype="multipart/form-data">
+        <input type="text" name="nombre" placeholder="Nombre completo" required />
+
+        <input type="email" name="email" placeholder="Correo electrónico" required />
+
+        <input type="tel" name="telefono" placeholder="Teléfono" required />
+
+        <select name="puesto_postulado" required>
+          <option value="">Seleccioná un puesto</option>
+          <option>Cajero/a</option>
+          <option>Repositor/a</option>
+          <option>Seguridad</option>
+          <option>Limpieza</option>
+          <option>Carnicero/a</option>
+          <option>Panadero/a</option>
+          <option>Fiambrero/a</option>
+          <option>Verdulero/a</option>
+        </select>
+
+        <textarea name="carta_presentacion" placeholder="Contanos sobre vos..." rows="5"></textarea>
+        <div>
+          <h4>Sube tu CV</h4>
+        </div>
+        <input type="file" name="cv" accept=".pdf,.doc,.docx" />
+        <button type="submit">Enviar Solicitud</button>
+      </form>
+
+      <div id="formMessage" role="status" style="margin-top:12px;color:green;font-weight:bold;display:none"></div>
+
+      <script>
+        (function(){
+          const form = document.querySelector('form');
+          const msg = document.getElementById('formMessage');
+
+          form.addEventListener('submit', async function(e){
+            e.preventDefault();
+            msg.style.display = 'block';
+            msg.style.color = 'black';
+            msg.textContent = 'Enviando...';
+
+            try {
+              const url = form.action;
+              const fd = new FormData(form);
+
+              const resp = await fetch(url, { method: 'POST', body: fd });
+              const json = await resp.json();
+
+              if (json.exito) {
+                msg.style.color = 'green';
+                msg.textContent = 'Enviado correctamente';
+                form.reset();
+              } else if (json.error) {
+                msg.style.color = 'red';
+                msg.textContent = json.error;
+              } else {
+                msg.style.color = 'red';
+                msg.textContent = 'Error inesperado';
+              }
+            } catch (err) {
+              msg.style.color = 'red';
+              msg.textContent = 'Error al enviar: ' + (err.message || err);
+            }
+          });
+        })();
+      </script>
+    </section>
+  </body>
+</html>
