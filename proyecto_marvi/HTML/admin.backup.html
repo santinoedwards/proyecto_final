@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - Marvi</title>
+    <!-- Vincula tus estilos CSS actuales aquí -->
+    <link rel="stylesheet" href="../CSS/index.css">
+
+</head>
+<body>
+
+    <header>
+        <!-- Barra de navegación actual de Marvi -->
+        <nav>
+            <span>Supermercado Marvi</span>
+            <a href="index.html">Inicio</a>
+        </nav>
+    </header>
+
+    <div class="contenedor-login">
+        <h1>Iniciar sesión</h1>
+        <p>Accedé al panel para gestionar las postulaciones.</p>
+
+        <!-- Elemento oculto para mostrar errores de autenticación -->
+        <div id="alerta-error" class="mensaje-alerta"></div>
+
+        <!-- Formulario de Login -->
+        <form id="formulario-login">
+            <div class="grupo-formulario">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" required autocomplete="email">
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="contrasena" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="btn-ingresar">Iniciar sesión</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formulario-login').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evitamos que la página se recargue de forma tradicional
+
+            const correo = document.getElementById('correo').value;
+            const contrasena = document.getElementById('contrasena').value;
+            const alerta = document.getElementById('alerta-error');
+
+            alerta.style.display = 'none'; // Ocultamos errores previos
+
+            // Estructuramos los datos para enviarlos al backend
+            const datos = new FormData();
+            datos.append('action', 'login'); // Acción de tu controlador PHP
+            datos.append('email', correo);
+            datos.append('password', contrasena);
+
+            // Ajusta la ruta 'backend/controlador.php' según dónde guardes tus archivos PHP
+            fetch('backend/controlador.php', {
+                method: 'POST',
+                body: datos
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    // Si el servidor reporta un error (usuario incorrecto, campos vacíos, etc.)
+                    alerta.textContent = data.error;
+                    alerta.style.display = 'block';
+                } else {
+                    // ¡Éxito! Redirigimos de forma inmediata a la página de currículums
+                    // Cambia 'curriculums.html' por el nombre exacto de tu archivo de la vista
+                    window.location.href = 'curriculums.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error de red:', error);
+                alerta.textContent = 'Ocurrió un problema de conexión con el servidor.';
+                alerta.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

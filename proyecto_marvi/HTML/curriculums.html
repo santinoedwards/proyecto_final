@@ -1,0 +1,113 @@
+<!-- HTML/beneficios.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficios - Marvi</title>
+
+    <link rel="stylesheet" href="../CSS/index.css">
+</head>
+<body>
+
+<header>
+<img id="logo" src="../imagenes/logo.png">
+
+    <nav>
+        <a href="../HTML/adminstrador.html">administrador</a>
+		<a href="../HTML/index.html">Inicio</a>
+		<a href="../HTML/empleos.html">Empleos</a>
+		<a href="../HTML/beneficios.html">Beneficios</a>
+		<a href="../HTML/postularse.html">Postularse</a>
+	</nav>
+
+</header>
+    <div class="seccion-admin">
+        <h1 style="text-align: center;">Currículums</h1>
+        <p style="text-align: center;">Aquí puedes gestionar los currículums recibidos.</p>
+
+        <!-- Tabla dinámica donde se inyectará el contenido de la base de datos -->
+        <table class="tabla-cvs">
+            <thead>
+                <tr>
+                    <th>Postulante</th>
+                    <th>Email</th>
+                    <th>Puesto</th>
+                    <th>Documento Adjunto</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-cuerpo-cvs">
+                <tr>
+                    <td colspan="4" style="text-align:center;">Cargando postulaciones...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Función para cargar los datos del backend
+        function cargarCurriculums() {
+            // Llamamos a tu archivo controlador PHP usando la acción correspondiente
+            fetch('backend/controlador.php?action=postulaciones') 
+                .then(response => response.json())
+                .then(data => {
+                    const cuerpoTabla = document.getElementById('tabla-cuerpo-cvs');
+                    cuerpoTabla.innerHTML = ''; // Limpiamos el mensaje de "Cargando"
+
+                    // Si hay un error en la respuesta del backend
+                    if (data.error) {
+                        cuerpoTabla.innerHTML = `<tr><td colspan="4" style="color:red; text-align:center;">Error: ${data.error}</td></tr>`;
+                        return;
+                    }
+
+                    // Si la base de datos está vacía
+                    if (!data || data.length === 0) {
+                        cuerpoTabla.innerHTML = '<tr><td colspan="4" style="text-align:center;">No se han recibido postulaciones aún.</td></tr>';
+                        return;
+                    }
+
+                    // Iteramos sobre cada registro devuelto por obtenerPostulaciones()
+                    data.forEach(postulacion => {
+                        const fila = document.createElement('tr');
+
+                        // Evaluamos el archivo para asignarle un botón e icono adecuado
+                        let celdaArchivo = '<span class="sin-cv">No adjuntó archivo</span>';
+                        
+                        if (postulacion.ruta_cv) {
+                            // Extraemos la extensión del archivo guardado en la base de datos
+                            const extension = postulacion.ruta_cv.split('.').pop().toLowerCase();
+                            
+                            // Separamos visualmente si es PDF o un formato de Word (DOC/DOCX)
+                            if (extension === 'pdf') {
+                                celdaArchivo = `<a href="${postulacion.ruta_cv}" target="_blank" class="btn-descargar btn-pdf">📄 Ver PDF</a>`;
+                            } else if (extension === 'doc' || extension === 'docx') {
+                                celdaArchivo = `<a href="${postulacion.ruta_cv}" target="_blank" class="btn-descargar btn-word">📝 Descargar Word</a>`;
+                            } else {
+                                // En caso de que haya un archivo antiguo con otro formato
+                                celdaArchivo = `<a href="${postulacion.ruta_cv}" target="_blank" class="btn-descargar">📁 Descargar Archivo</a>`;
+                            }
+                        }
+
+                        // Estructuramos las celdas usando las propiedades que maneja tu base de datos
+                        fila.innerHTML = `
+                            <td><strong>${postulacion.nombre || 'Sin nombre'}</strong><br><small>${postulacion.telefono || ''}</small></td>
+                            <td>${postulacion.email || ''}</td>
+                            <td>${postulacion.puesto_postulado || 'No especificado'}</td>
+                            <td>${celdaArchivo}</td>
+                        `;
+
+                        cuerpoTabla.appendChild(fila);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al conectar con el servidor:', error);
+                    document.getElementById('tabla-cuerpo-cvs').innerHTML = 
+                        '<tr><td colspan="4" style="color:red; text-align:center;">Error de conexión al cargar los currículums.</td></tr>';
+                });
+        }
+
+        // Ejecutar de forma automática al cargar la página
+        window.addEventListener('DOMContentLoaded', cargarCurriculums);
+    </script>
+</body>
+</html>
