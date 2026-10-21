@@ -36,7 +36,7 @@
 			</p>
 		</div>
 
-		<form class="login-form" method="POST" action="#">
+		<form class="login-form" id="login-form" method="POST">
 
 			<div class="login-field">
 				<label for="email">Correo electrónico</label>
@@ -62,9 +62,10 @@
 				>
 			</div>
 
-			<button type="submit" href="../HTML/curriculums.html" class="btn-login">
+			<button type="submit" class="btn-login">
 				Iniciar sesión
 			</button>
+			<p class="admin-message" id="login-message" role="alert" aria-live="polite"></p>
 
 		</form>
 
@@ -72,5 +73,6 @@
 
 </main>
 
+<script src="../JS/admin.js" defer></script>
 </body>
 </html>

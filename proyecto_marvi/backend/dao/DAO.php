@@ -33,4 +33,19 @@ function obtenerPostulaciones() {
   return $filas;
 }
 
+// Busca la cuenta por correo; la contraseña se verifica en el controlador con password_verify().
+function obtenerAdministradorPorEmail($email) {
+  $conn = conectar();
+  $stmt = $conn->prepare("SELECT id, email, password_hash FROM administradores WHERE email = ? LIMIT 1");
+  $stmt->bind_param('s', $email);
+  $stmt->execute();
+
+  $resultado = $stmt->get_result();
+  $administrador = $resultado->fetch_assoc();
+  $stmt->close();
+  $conn->close();
+
+  return $administrador;
+}
+
 ?>

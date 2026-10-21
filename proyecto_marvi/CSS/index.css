@@ -597,6 +597,115 @@ td a:hover{
     color: #c62828;
 }
 
+.admin-message:empty{
+
+    display: none;
+}
+
+.admin-message.mensaje-exito{
+
+    color: #2e7d32;
+}
+
+.login-form button:disabled,
+.btn-cerrar-sesion:disabled{
+
+    cursor: wait;
+
+    opacity: 0.7;
+}
+
+.seccion-admin{
+
+    padding: 60px 5%;
+}
+
+.admin-panel-heading{
+
+    max-width: 1100px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.admin-panel-heading h1{
+
+    margin: 0 0 8px;
+
+    color: #222;
+}
+
+.admin-panel-heading p{
+
+    margin: 0;
+
+    color: #666;
+}
+
+.btn-cerrar-sesion{
+
+    padding: 12px 18px;
+
+    font-size: 15px;
+
+    white-space: nowrap;
+}
+
+.tabla-cvs{
+
+    min-width: 1050px;
+}
+
+.tabla-vacia{
+
+    text-align: center;
+
+    color: #666;
+}
+
+.sin-cv{
+
+    color: #777;
+}
+
+.btn-descargar{
+
+    display: inline-block;
+
+    color: #ff7b00;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.btn-descargar:hover{
+
+    text-decoration: underline;
+}
+
+@media(max-width: 768px){
+
+    .admin-panel-heading{
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .seccion-admin{
+
+        padding: 40px 20px;
+    }
+}
+
 /* ================= FOOTER ================= */
 
 footer{
