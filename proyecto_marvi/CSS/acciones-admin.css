@@ -1,0 +1,59 @@
+/* Agregar al final de ../CSS/index.css */
+
+.celda-acciones {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-accion {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-accion:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.btn-aceptar {
+    background: #1f7a4d;
+    color: #fff;
+}
+
+.btn-aceptar:hover {
+    background: #17613c;
+}
+
+.btn-eliminar {
+    background: transparent;
+    color: #b3261e;
+    border-color: #b3261e;
+}
+
+.btn-eliminar:hover {
+    background: #b3261e;
+    color: #fff;
+}
+
+.estado {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.estado-pendiente {
+    background: #fff3cd;
+    color: #664d03;
+}
+
+.estado-aceptada {
+    background: #d1e7dd;
+    color: #0f5132;
+}
